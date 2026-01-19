@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chatbot</title>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #ffffff;
+      color: #000000;
+    }
+  </style>
+</head>
+<body>
+
+<h1 id="title">Loading...</h1>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get("name") || "there";
+  const company = params.get("company") || "our company";
+
+  document.title = `Hey ${name}, here is the chatbot for you`;
+  document.getElementById("title").innerText =
+    `Hey ${name}, here is the chatbot for you`;
+
+  (function (d, t) {
+    var v = d.createElement(t);
+    var s = d.getElementsByTagName(t)[0];
+
+    v.onload = function () {
+      window.voiceflow.chat.load({
+        verify: {
+          projectID: "VOICEFLOW_PROJECT_ID"
+        },
+        url: "https://general-runtime.voiceflow.com",
+        versionID: "production",
+        launch: {
+          context: {
+            company_name: company,
+            user_name: name
+          }
+        }
+      });
+    };
+
+    v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
+    v.type = "text/javascript";
+    s.parentNode.insertBefore(v, s);
+  })(document, "script");
+</script>
+
+</body>
+</html>
