@@ -11,23 +11,19 @@
   if(h1) h1.innerText = `Hey, here is the chatbot for ${company}`;
 
   // Load Voiceflow chat widget
-  (function(d, t){
-    var v = d.createElement(t),
-        s = d.getElementsByTagName(t)[0];
-
-    v.onload = function() {
-      window.voiceflow.chat.load({
-        verify: { projectID: "6962863ea3c28a27fd60ce69" }, 
-        url: "https://general-runtime.voiceflow.com",
-        versionID: "production",
-        launch: {
-          context: { company_name: company }
-        }
-      });
-    };
-
-    v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
-    v.type = "text/javascript";
-    s.parentNode.insertBefore(v, s);
-  })(document, "script");
+  <script type="text/javascript">
+  (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '69896c43f214c3b5add46c1c' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production',
+          voice: {
+            url: "https://runtime-api.voiceflow.com"
+          }
+        });
+      }
+      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+  })(document, 'script');
 </script>
